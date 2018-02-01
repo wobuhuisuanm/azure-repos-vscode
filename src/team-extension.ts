@@ -4,7 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 "use strict";
 
-import { scm, StatusBarAlignment, StatusBarItem, ProgressLocation, window } from "vscode";
+import { StatusBarAlignment, StatusBarItem, ProgressLocation, window, SourceControlInputBox } from "vscode";
 import { DeviceFlowAuthenticator, DeviceFlowDetails, IDeviceFlowAuthenticationOptions, IDeviceFlowTokenOptions } from "vsts-device-flow-auth";
 import { PinnedQuerySettings } from "./helpers/settings";
 import { CommandNames, Constants, DeviceFlowConstants, TelemetryEvents, TfvcTelemetryEvents, WitTypes } from "./helpers/constants";
@@ -22,6 +22,7 @@ import { ExtensionManager } from "./extensionmanager";
 
 import * as os from "os";
 import * as util from "util";
+import * as vscode from "vscode";
 
 export class TeamExtension  {
     private _manager: ExtensionManager;
@@ -371,12 +372,14 @@ export class TeamExtension  {
     }
 
     private appendToCheckinMessage(line: string): void {
-        const previousMessage = scm.inputBox.value;
-        if (previousMessage) {
-            scm.inputBox.value = previousMessage + "\n" + line;
-        } else {
-            scm.inputBox.value = line;
-        }
+        this.withSourceControlInputBox((inputBox: SourceControlInputBox) => {
+            const previousMessage = inputBox.value;
+            if (previousMessage) {
+                inputBox.value = previousMessage + "\n" + line;
+            } else {
+                inputBox.value = line;
+            }
+        });
     }
 
     private getDefaultUsername() : string {
@@ -488,6 +491,28 @@ export class TeamExtension  {
         if (!this._pollingTimer) {
             this._initialTimer = setTimeout(() => this.refreshPollingItems(), 1000 * 4);
             this._pollingTimer = setInterval(() => this.refreshPollingItems(), 1000 * 60 * this._manager.Settings.PollingInterval);
+        }
+    }
+
+    /**
+     * Exposes access to the source control input box for use in other areas.
+     * @param fn A function that works with the input box.
+     */
+    private withSourceControlInputBox(fn: (input: SourceControlInputBox) => void) {
+        const gitExtension = vscode.extensions.getExtension("vscode.git");
+        if (gitExtension) {
+            const git = gitExtension.exports;
+            if (git) {
+                git.getRepositories()
+                    .then((repos: any[]) => {
+                        if (repos && repos.length > 0) {
+                            const inputBox = repos[0].inputBox;
+                            if (inputBox) {
+                                fn(inputBox);
+                            }
+                        }
+                    });
+            }
         }
     }
 
