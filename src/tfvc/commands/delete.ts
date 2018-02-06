@@ -61,7 +61,7 @@ export class Delete implements ITfvcCommand<string[]> {
     */
 
     public async ParseOutput(executionResult: IExecutionResult): Promise<string[]> {
-        CommandHelper.ProcessErrors(this.GetArguments().GetCommand(), executionResult, true);
+        CommandHelper.ProcessErrors(executionResult);
 
         const lines: string[] = CommandHelper.SplitIntoLines(executionResult.stdout, false, true /*filterEmptyLines*/);
 

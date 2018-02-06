@@ -64,14 +64,14 @@ export class TfCommandLineRunner {
             if (!stats || (!stats.isFile() && !stats.isSymbolicLink())) {
                 Logger.LogWarning(`TFVC ${tfvcPath} exists but isn't a file or symlink.`);
                 throw new TfvcError({
-                    message: Strings.TfMissingError + tfvcPath,
+                    message: Strings.TfMissingError,
                     tfvcErrorCode: TfvcErrorCodes.NotFound
                 });
             }
         } else {
             Logger.LogWarning(`TFVC ${tfvcPath} does not exist.`);
             throw new TfvcError({
-                message: Strings.TfMissingError + tfvcPath,
+                message: Strings.TfMissingError,
                 tfvcErrorCode: TfvcErrorCodes.NotFound
             });
         }

@@ -58,7 +58,7 @@ export class Rename implements ITfvcCommand<string> {
     */
     public async ParseOutput(executionResult: IExecutionResult): Promise<string> {
         //Throw if any errors are found in stderr or if exitcode is not 0
-        CommandHelper.ProcessErrors(this.GetArguments().GetCommand(), executionResult);
+        CommandHelper.ProcessErrors(executionResult);
 
         const lines: string[] = CommandHelper.SplitIntoLines(executionResult.stdout, false, true /*filterEmptyLines*/);
 

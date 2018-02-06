@@ -418,9 +418,7 @@ describe("Tfvc-StatusCommand", function() {
             await cmd.ParseOutput(executionResult);
         } catch (err) {
             assert.equal(err.exitCode, 42);
-            assert.equal(err.tfvcCommand, "status");
             assert.isTrue(err.message.startsWith(Strings.TfExecFailedError));
-            assert.isTrue(err.stdout.startsWith("Something bad this way comes."));
         }
     });
 
@@ -437,9 +435,7 @@ describe("Tfvc-StatusCommand", function() {
             await cmd.ParseExeOutput(executionResult);
         } catch (err) {
             assert.equal(err.exitCode, 42);
-            assert.equal(err.tfvcCommand, "status");
             assert.isTrue(err.message.startsWith(Strings.TfExecFailedError));
-            assert.isTrue(err.stdout.startsWith("Something bad this way comes."));
         }
     });
 
