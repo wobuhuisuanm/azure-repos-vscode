@@ -188,7 +188,6 @@ describe("Tfvc-CheckinCommand", function() {
             await cmd.ParseOutput(executionResult);
         } catch (err) {
             assert.equal(err.exitCode, 100);
-            assert.equal(err.tfvcCommand, "checkin");
         }
     });
 
@@ -244,7 +243,6 @@ describe("Tfvc-CheckinCommand", function() {
             await cmd.ParseExeOutput(executionResult);
         } catch (err) {
             assert.equal(err.exitCode, 100);
-            assert.equal(err.tfvcCommand, "checkin");
         }
     });
 

@@ -41,7 +41,7 @@ export class CommandHelper {
         return false;
     }
 
-    public static ProcessErrors(command: string, result: IExecutionResult, showFirstError?: boolean): void {
+    public static ProcessErrors(result: IExecutionResult): void {
         if (result.exitCode) {
             let tfvcErrorCode: string = TfvcErrorCodes.UnknownError;
             let message: string;
@@ -87,8 +87,6 @@ export class CommandHelper {
                 messageOptions = [{ title : Strings.MoreDetails,
                                     url : Constants.WorkspaceNotDetectedByClcUrl,
                                     telemetryId: TfvcTelemetryEvents.ClcCannotAccessWorkspace }];
-            } else if (showFirstError) {
-                message = result.stderr ? result.stderr : result.stdout;
             }
 
             //Log any information we receive via either stderr or stdout
@@ -102,11 +100,8 @@ export class CommandHelper {
             throw new TfvcError({
                 message: message || Strings.TfExecFailedError,
                 messageOptions: messageOptions,
-                stdout: result.stdout,
-                stderr: result.stderr,
                 exitCode: result.exitCode,
-                tfvcErrorCode: tfvcErrorCode,
-                tfvcCommand: command
+                tfvcErrorCode: tfvcErrorCode
             });
         }
     }
