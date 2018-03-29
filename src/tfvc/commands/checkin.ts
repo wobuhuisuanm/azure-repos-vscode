@@ -87,10 +87,10 @@ export class Checkin implements ITfvcCommand<string> {
     }
 
     public GetExeArguments(): IArgumentProvider {
-        const builder: ArgumentBuilder = new ArgumentBuilder("checkin", this._serverContext, true /* skipCollectionOption */, true /* isExe */);
-        builder.AddSwitch("noprompt");
-        builder.RemoveSwitch("prompt");
-        builder.AddAll(this._files);
+        const builder: ArgumentBuilder = new ArgumentBuilder("checkin", this._serverContext, true /* skipCollectionOption */, true /* isExe */)
+            .AddSwitch("noprompt")
+            .RemoveSwitch("prompt")
+            .AddAll(this._files);
         if (this._comment) {
             builder.AddSwitchWithValue("comment", this.getComment(), false);
         }

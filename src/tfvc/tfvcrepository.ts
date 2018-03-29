@@ -52,8 +52,6 @@ export class TfvcRepository {
         // provides English strings back to us to parse.
         this._env.TF_NOTELEMETRY = "TRUE";
         this._env.TF_ADDITIONAL_JAVA_ARGS = "-Duser.country=US -Duser.language=en";
-
-//        this._env.ATTACH_DEBUGGER = "1";
     }
 
     public get TfvcLocation(): string {
