@@ -1,5 +1,45 @@
 
 
+## [v1.133.0](https://github.com/Microsoft/vsts-vscode/tree/v1.133.0) (2018-04-03)
+[Full Changelog](https://github.com/Microsoft/vsts-vscode/compare/v1.122.0...v1.133.0)
+
+**Fixed bugs:**
+
+- Unable to find the TF executable [\#295](https://github.com/Microsoft/vsts-vscode/issues/295)
+
+**Closed issues:**
+
+- What is the future of this extension? [\#370](https://github.com/Microsoft/vsts-vscode/issues/370)
+- VSTS does not prompt for credentials when adding a TFS folder [\#368](https://github.com/Microsoft/vsts-vscode/issues/368)
+- There's no audio with the TFVC Source Code Control in Visual Studio Code video [\#363](https://github.com/Microsoft/vsts-vscode/issues/363)
+- Is there a way to enforce code review with this extension \#question  [\#354](https://github.com/Microsoft/vsts-vscode/issues/354)
+- Cannot sign in to TFS: Could not load type 'Microsoft.TeamFoundation.Common.TeamFoundationIdentityReference' [\#353](https://github.com/Microsoft/vsts-vscode/issues/353)
+- Can't associate Work Items from another Team Project [\#351](https://github.com/Microsoft/vsts-vscode/issues/351)
+- The associate work item, not populating commit message [\#341](https://github.com/Microsoft/vsts-vscode/issues/341)
+- VSCode recommends this because I have git installed? [\#338](https://github.com/Microsoft/vsts-vscode/issues/338)
+- @CurrentIteration doesn't seem to be working pinned queries [\#337](https://github.com/Microsoft/vsts-vscode/issues/337)
+- Is this extension for Git based repos only? [\#336](https://github.com/Microsoft/vsts-vscode/issues/336)
+- Git repositories cloned from VSTS/visualstudio.com using the "new" url aren't detected by the vsts extension [\#333](https://github.com/Microsoft/vsts-vscode/issues/333)
+- VSTS PAT [\#327](https://github.com/Microsoft/vsts-vscode/issues/327)
+-  TF400324: Team Foundation services are not available from server  [\#320](https://github.com/Microsoft/vsts-vscode/issues/320)
+- Unable to find the TF executable [\#317](https://github.com/Microsoft/vsts-vscode/issues/317)
+- Incorrectly claiming I am using a server workspace [\#315](https://github.com/Microsoft/vsts-vscode/issues/315)
+- selecting them [\#307](https://github.com/Microsoft/vsts-vscode/issues/307)
+- Get latest source code from TFS [\#305](https://github.com/Microsoft/vsts-vscode/issues/305)
+- Soap Service error - can't connect to TFS Projects from company server [\#304](https://github.com/Microsoft/vsts-vscode/issues/304)
+- Visual Studio authentication popup  [\#303](https://github.com/Microsoft/vsts-vscode/issues/303)
+-     Team 00 关闭 错误command 'team.Signin' not found [\#301](https://github.com/Microsoft/vsts-vscode/issues/301)
+- Impossible to switch to TFS [\#290](https://github.com/Microsoft/vsts-vscode/issues/290)
+- \(team\) socket hang up / \(team\) undefined after switch to Azure VM [\#288](https://github.com/Microsoft/vsts-vscode/issues/288)
+- Unable to connect TFVC to the existing Team foundation server 2015 update 3 [\#287](https://github.com/Microsoft/vsts-vscode/issues/287)
+
+**Merged pull requests:**
+
+- Remove all telemetry data that could potential conflict with GDPR requirements. [\#377](https://github.com/Microsoft/vsts-vscode/pull/377) ([ermeckle](https://github.com/ermeckle))
+- Fixed "Associate work items" command for git source control \(\#314\) [\#367](https://github.com/Microsoft/vsts-vscode/pull/367) ([dougrday](https://github.com/dougrday))
+- Fix VSTS URL detection for "new-style" SSH clones [\#334](https://github.com/Microsoft/vsts-vscode/pull/334) ([aberghage](https://github.com/aberghage))
+- Visual Studio TF.exe file location [\#321](https://github.com/Microsoft/vsts-vscode/pull/321) ([OzBob](https://github.com/OzBob))
+
 ## [v1.122.0](https://github.com/Microsoft/vsts-vscode/tree/v1.122.0) (2017-08-14)
 [Full Changelog](https://github.com/Microsoft/vsts-vscode/compare/v1.121.1...v1.122.0)
 
@@ -460,7 +500,7 @@
 - Add Team Foundation Server 2015 support [\#22](https://github.com/Microsoft/vsts-vscode/pull/22) ([jeffyoung](https://github.com/jeffyoung))
 
 ## [v1.100.0](https://github.com/Microsoft/vsts-vscode/tree/v1.100.0) (2016-05-02)
-[Full Changelog](https://github.com/Microsoft/vsts-vscode/compare/v1.99.0...v1.100.0)
+[Full Changelog](https://github.com/Microsoft/vsts-vscode/compare/1.99.0...v1.100.0)
 
 **Closed issues:**
 
@@ -473,11 +513,11 @@
 - Refactoring into Info objects  [\#15](https://github.com/Microsoft/vsts-vscode/pull/15) ([jeffyoung](https://github.com/jeffyoung))
 - Limiting keywords to five \(latest vsce requirement\) [\#14](https://github.com/Microsoft/vsts-vscode/pull/14) ([jeffyoung](https://github.com/jeffyoung))
 
-## [v1.99.0](https://github.com/Microsoft/vsts-vscode/tree/v1.99.0) (2016-04-14)
-[Full Changelog](https://github.com/Microsoft/vsts-vscode/compare/1.99.0...v1.99.0)
-
 ## [1.99.0](https://github.com/Microsoft/vsts-vscode/tree/1.99.0) (2016-04-14)
-[Full Changelog](https://github.com/Microsoft/vsts-vscode/compare/v1.98.0...1.99.0)
+[Full Changelog](https://github.com/Microsoft/vsts-vscode/compare/v1.99.0...1.99.0)
+
+## [v1.99.0](https://github.com/Microsoft/vsts-vscode/tree/v1.99.0) (2016-04-14)
+[Full Changelog](https://github.com/Microsoft/vsts-vscode/compare/v1.98.0...v1.99.0)
 
 **Implemented enhancements:**
 
