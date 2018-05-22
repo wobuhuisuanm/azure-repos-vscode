@@ -89,6 +89,17 @@ describe("RepositoryInfo", function() {
         assert.isTrue(repoInfo.IsTeamFoundation);
     });
 
+    it("should verify host, account and isTeamServices for valid azure remoteUrl", function() {
+        const url: string = "https://test.azure.com/account/teamproject/_git/repositoryName";
+        const repoInfo: RepositoryInfo = new RepositoryInfo(url);
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.equal(repoInfo.Protocol, "https:");
+        assert.equal(repoInfo.RepositoryUrl, url);
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+    });
+
     it("should verify host, account and isTeamServices for valid remoteUrl - limited refs - full", function() {
         const url: string = "https://account.visualstudio.com/DefaultCollection/teamproject/_git/_full/repositoryName";
         const repoInfo: RepositoryInfo = new RepositoryInfo(url);
@@ -100,6 +111,17 @@ describe("RepositoryInfo", function() {
         assert.isTrue(repoInfo.IsTeamFoundation);
     });
 
+    it("should verify host, account and isTeamServices for valid azure remoteUrl - limited refs - full", function() {
+        const url: string = "https://test.azure.com/account/teamproject/_git/_full/repositoryName";
+        const repoInfo: RepositoryInfo = new RepositoryInfo(url);
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.equal(repoInfo.Protocol, "https:");
+        assert.equal(repoInfo.RepositoryUrl, "https://test.azure.com/account/teamproject/_git/repositoryName");
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+    });
+
     it("should verify host, account and isTeamServices for valid remoteUrl - limited refs - optimized", function() {
         const url: string = "https://account.visualstudio.com/DefaultCollection/teamproject/_git/_optimized/repositoryName";
         const repoInfo: RepositoryInfo = new RepositoryInfo(url);
@@ -107,6 +129,17 @@ describe("RepositoryInfo", function() {
         assert.equal(repoInfo.Account, "account");
         assert.equal(repoInfo.Protocol, "https:");
         assert.equal(repoInfo.RepositoryUrl, "https://account.visualstudio.com/DefaultCollection/teamproject/_git/repositoryName");
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+    });
+
+    it("should verify host, account and isTeamServices for valid azure remoteUrl - limited refs - optimized", function() {
+        const url: string = "https://test.azure.com/account/teamproject/_git/_optimized/repositoryName";
+        const repoInfo: RepositoryInfo = new RepositoryInfo(url);
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.equal(repoInfo.Protocol, "https:");
+        assert.equal(repoInfo.RepositoryUrl, "https://test.azure.com/account/teamproject/_git/repositoryName");
         assert.isTrue(repoInfo.IsTeamServices);
         assert.isTrue(repoInfo.IsTeamFoundation);
     });
@@ -154,6 +187,51 @@ describe("RepositoryInfo", function() {
         assert.equal(repoInfo.RepositoryUrl, "https://account.visualstudio.com/teamproject/_git/repositoryName");
         assert.equal(repoInfo.TeamProject, "teamproject");
         assert.equal(repoInfo.TeamProjectUrl, "https://account.visualstudio.com/teamproject");
+    });
+
+    it("should verify valid values in repositoryInfo to RepositoryInfo constructor for azure", function() {
+        let repoInfo: RepositoryInfo = new RepositoryInfo("https://test.azure.com/account/teamproject/_git/repositoryName");
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+        const repositoryInfo: any = {
+           "serverUrl": "https://test.azure.com",
+           "collection": {
+              "id": "5e082e28-e8b2-4314-9200-629619e91098",
+              "name": "account",
+              "url": "https://test.azure.com/account/_apis/projectCollections/5e082e28-e8b2-4314-9200-629619e91098"
+           },
+           "repository": {
+              "id": "cc015c05-de20-4e3f-b3bc-3662b6bc0e42",
+              "name": "repositoryName",
+              "url": "https://test.azure.com/account/_apis/git/repositories/cc015c05-de20-4e3f-b3bc-3662b6bc0e42",
+              "project": {
+                 "id": "ecbf2301-0e62-4b0d-a12d-1992f2ea95a8",
+                 "name": "teamproject",
+                 "description": "Our team project",
+                 "url": "https://test.azure.com/account/_apis/projects/ecbf2301-0e62-4b0d-a12d-1992f2ea95a8",
+                 "state": 1,
+                 "revision": 14558
+              },
+              "remoteUrl": "https://test.azure.com/account/teamproject/_git/repositoryName"
+           }
+        };
+        repoInfo = new RepositoryInfo(repositoryInfo);
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.equal(repoInfo.AccountUrl, "https://test.azure.com/account");
+        assert.equal(repoInfo.CollectionId, "5e082e28-e8b2-4314-9200-629619e91098");
+        assert.equal(repoInfo.CollectionName, "account");
+        assert.equal(repoInfo.CollectionUrl, "https://test.azure.com/account");
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+        assert.isFalse(repoInfo.IsTeamFoundationServer);
+        assert.equal(repoInfo.RepositoryId, "cc015c05-de20-4e3f-b3bc-3662b6bc0e42");
+        assert.equal(repoInfo.RepositoryName, "repositoryName");
+        assert.equal(repoInfo.RepositoryUrl, "https://test.azure.com/account/teamproject/_git/repositoryName");
+        assert.equal(repoInfo.TeamProject, "teamproject");
+        assert.equal(repoInfo.TeamProjectUrl, "https://test.azure.com/account/teamproject");
     });
 
     it("should verify 'collection in the domain' case insensitivity in repositoryInfo to RepositoryInfo constructor", function() {
@@ -204,6 +282,54 @@ describe("RepositoryInfo", function() {
         assert.equal(repoInfo.TeamProjectUrl, "https://account.visualstudio.com/teamproject");
     });
 
+    it("should verify 'collection in the domain' case insensitivity in repositoryInfo to RepositoryInfo constructor for azure", function() {
+        let repoInfo: RepositoryInfo = new RepositoryInfo("https://test.azure.com/account/teamproject/_git/repositoryName");
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+        // To properly test 'collection in the domain' case insensitivity, ensure the collection name is a different case than the account (e.g., 'ACCOUNT' versus 'account')
+        const repositoryInfo: any = {
+           "serverUrl": "https://test.azure.com",
+           "collection": {
+              "id": "5e082e28-e8b2-4314-9200-629619e91098",
+              "name": "ACCOUNT",
+              "url": "https://test.azure.com/account/_apis/projectCollections/5e082e28-e8b2-4314-9200-629619e91098"
+           },
+           "repository": {
+              "id": "cc015c05-de20-4e3f-b3bc-3662b6bc0e42",
+              "name": "repositoryName",
+              "url": "https://test.azure.com/account/_apis/git/repositories/cc015c05-de20-4e3f-b3bc-3662b6bc0e42",
+              "project": {
+                 "id": "ecbf2301-0e62-4b0d-a12d-1992f2ea95a8",
+                 "name": "teamproject",
+                 "description": "Our team project",
+                 "url": "https://test.azure.com/account/_apis/projects/ecbf2301-0e62-4b0d-a12d-1992f2ea95a8",
+                 "state": 1,
+                 "revision": 14558
+              },
+              "remoteUrl": "https://test.azure.com/account/teamproject/_git/repositoryName"
+           }
+        };
+        repoInfo = new RepositoryInfo(repositoryInfo);
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.equal(repoInfo.AccountUrl, "https://test.azure.com/account");
+        assert.equal(repoInfo.CollectionId, "5e082e28-e8b2-4314-9200-629619e91098");
+        // CollectionName should maintain the same case as in the JSON
+        assert.equal(repoInfo.CollectionName, "ACCOUNT");
+        // CollectionUrl should not contain the collection name since this is an azure-backed/test.azure.com account & collection name are the same (case insensitive)
+        assert.equal(repoInfo.CollectionUrl, "https://test.azure.com/account");
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+        assert.isFalse(repoInfo.IsTeamFoundationServer);
+        assert.equal(repoInfo.RepositoryId, "cc015c05-de20-4e3f-b3bc-3662b6bc0e42");
+        assert.equal(repoInfo.RepositoryName, "repositoryName");
+        assert.equal(repoInfo.RepositoryUrl, "https://test.azure.com/account/teamproject/_git/repositoryName");
+        assert.equal(repoInfo.TeamProject, "teamproject");
+        assert.equal(repoInfo.TeamProjectUrl, "https://test.azure.com/account/teamproject");
+    });
+
     it("should verify valid values in repositoryInfo to RepositoryInfo constructor - limited refs - full", function() {
         let repoInfo: RepositoryInfo = new RepositoryInfo("https://account.visualstudio.com/DefaultCollection/teamproject/_git/repositoryName");
         assert.equal(repoInfo.Host, "account.visualstudio.com");
@@ -249,6 +375,51 @@ describe("RepositoryInfo", function() {
         assert.equal(repoInfo.TeamProjectUrl, "https://account.visualstudio.com/teamproject");
     });
 
+    it("should verify valid values in repositoryInfo to RepositoryInfo constructor - limited refs - full: for azure", function() {
+        let repoInfo: RepositoryInfo = new RepositoryInfo("https://test.azure.com/account/teamproject/_git/repositoryName");
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+        const repositoryInfo: any = {
+           "serverUrl": "https://test.azure.com",
+           "collection": {
+              "id": "5e082e28-e8b2-4314-9200-629619e91098",
+              "name": "account",
+              "url": "https://test.azure.com/account/_apis/projectCollections/5e082e28-e8b2-4314-9200-629619e91098"
+           },
+           "repository": {
+              "id": "cc015c05-de20-4e3f-b3bc-3662b6bc0e42",
+              "name": "repositoryName",
+              "url": "https://test.azure.com/account/_apis/git/repositories/cc015c05-de20-4e3f-b3bc-3662b6bc0e42",
+              "project": {
+                 "id": "ecbf2301-0e62-4b0d-a12d-1992f2ea95a8",
+                 "name": "teamproject",
+                 "description": "Our team project",
+                 "url": "https://test.azure.com/account/_apis/projects/ecbf2301-0e62-4b0d-a12d-1992f2ea95a8",
+                 "state": 1,
+                 "revision": 14558
+              },
+              "remoteUrl": "https://test.azure.com/account/teamproject/_git/_full/repositoryName"
+           }
+        };
+        repoInfo = new RepositoryInfo(repositoryInfo);
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.equal(repoInfo.AccountUrl, "https://test.azure.com/account");
+        assert.equal(repoInfo.CollectionId, "5e082e28-e8b2-4314-9200-629619e91098");
+        assert.equal(repoInfo.CollectionName, "account");
+        assert.equal(repoInfo.CollectionUrl, "https://test.azure.com/account");
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+        assert.isFalse(repoInfo.IsTeamFoundationServer);
+        assert.equal(repoInfo.RepositoryId, "cc015c05-de20-4e3f-b3bc-3662b6bc0e42");
+        assert.equal(repoInfo.RepositoryName, "repositoryName");
+        assert.equal(repoInfo.RepositoryUrl, "https://test.azure.com/account/teamproject/_git/repositoryName");
+        assert.equal(repoInfo.TeamProject, "teamproject");
+        assert.equal(repoInfo.TeamProjectUrl, "https://test.azure.com/account/teamproject");
+    });
+
     it("should verify valid values in repositoryInfo to RepositoryInfo constructor - limited refs - optimized", function() {
         let repoInfo: RepositoryInfo = new RepositoryInfo("https://account.visualstudio.com/DefaultCollection/teamproject/_git/repositoryName");
         assert.equal(repoInfo.Host, "account.visualstudio.com");
@@ -292,6 +463,51 @@ describe("RepositoryInfo", function() {
         assert.equal(repoInfo.RepositoryUrl, "https://account.visualstudio.com/teamproject/_git/repositoryName");
         assert.equal(repoInfo.TeamProject, "teamproject");
         assert.equal(repoInfo.TeamProjectUrl, "https://account.visualstudio.com/teamproject");
+    });
+
+    it("should verify valid values in repositoryInfo to RepositoryInfo constructor - limited refs - optimized: for azure", function() {
+        let repoInfo: RepositoryInfo = new RepositoryInfo("https://test.azure.com/account/teamproject/_git/repositoryName");
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+        const repositoryInfo: any = {
+           "serverUrl": "https://test.azure.com",
+           "collection": {
+              "id": "5e082e28-e8b2-4314-9200-629619e91098",
+              "name": "account",
+              "url": "https://test.azure.com/account/_apis/projectCollections/5e082e28-e8b2-4314-9200-629619e91098"
+           },
+           "repository": {
+              "id": "cc015c05-de20-4e3f-b3bc-3662b6bc0e42",
+              "name": "repositoryName",
+              "url": "https://test.azure.com/account/_apis/git/repositories/cc015c05-de20-4e3f-b3bc-3662b6bc0e42",
+              "project": {
+                 "id": "ecbf2301-0e62-4b0d-a12d-1992f2ea95a8",
+                 "name": "teamproject",
+                 "description": "Our team project",
+                 "url": "https://test.azure.com/account/_apis/projects/ecbf2301-0e62-4b0d-a12d-1992f2ea95a8",
+                 "state": 1,
+                 "revision": 14558
+              },
+              "remoteUrl": "https://test.azure.com/account/teamproject/_git/_optimized/repositoryName"
+           }
+        };
+        repoInfo = new RepositoryInfo(repositoryInfo);
+        assert.equal(repoInfo.Host, "test.azure.com");
+        assert.equal(repoInfo.Account, "account");
+        assert.equal(repoInfo.AccountUrl, "https://test.azure.com/account");
+        assert.equal(repoInfo.CollectionId, "5e082e28-e8b2-4314-9200-629619e91098");
+        assert.equal(repoInfo.CollectionName, "account");
+        assert.equal(repoInfo.CollectionUrl, "https://test.azure.com/account");
+        assert.isTrue(repoInfo.IsTeamServices);
+        assert.isTrue(repoInfo.IsTeamFoundation);
+        assert.isFalse(repoInfo.IsTeamFoundationServer);
+        assert.equal(repoInfo.RepositoryId, "cc015c05-de20-4e3f-b3bc-3662b6bc0e42");
+        assert.equal(repoInfo.RepositoryName, "repositoryName");
+        assert.equal(repoInfo.RepositoryUrl, "https://test.azure.com/account/teamproject/_git/repositoryName");
+        assert.equal(repoInfo.TeamProject, "teamproject");
+        assert.equal(repoInfo.TeamProjectUrl, "https://test.azure.com/account/teamproject");
     });
 
 });

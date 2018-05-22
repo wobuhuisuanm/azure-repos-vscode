@@ -67,8 +67,17 @@ export class RepositoryInfo {
 
             this._repositoryUrl = repositoryUrl;
             if (RepoUtils.IsTeamFoundationServicesRepo(repositoryUrl)) {
-                const splitHost = this._host.split(".");
-                this._account = splitHost[0];
+                if (RepoUtils.IsTeamFoundationServicesAzureRepo(this._repositoryUrl)) {
+                    const splitPath = this._path.split("/");
+                    if (splitPath.length >= 1) {
+                        this._account = splitPath[1];
+                    } else {
+                        throw new Error(`Could not parse account from ${this._path}`);
+                    }
+                } else {
+                    const splitHost = this._host.split(".");
+                    this._account = splitHost[0];
+                }
                 this._isTeamServicesUrl = true;
                 Logger.LogDebug("_isTeamServicesUrl: true");
             } else if (RepoUtils.IsTeamFoundationServerRepo(repositoryUrl)) {
@@ -105,6 +114,9 @@ export class RepositoryInfo {
     }
     public get AccountUrl(): string {
         if (this._isTeamServicesUrl) {
+            if (RepoUtils.IsTeamFoundationServicesAzureRepo(this._repositoryUrl)) {
+                return this._protocol + "//" + this._host + "/" + this._account;
+            }
             return this._protocol + "//" + this._host;
         } else if (this._isTeamFoundationServer) {
             return this._serverUrl;
@@ -120,8 +132,10 @@ export class RepositoryInfo {
         if (this._collection === undefined) {
             return undefined;
         }
-        //While leaving the actual data alone, check for 'collection in the domain'
-        if (this._account.toLowerCase() !== this._collection.toLowerCase()) {
+        // While leaving the actual data alone, check for 'collection in the domain'
+        // If an Azure repo the "DefaultCollection" should never be part of the URL.
+        if (this._account.toLowerCase() !== this._collection.toLowerCase()
+        && !RepoUtils.IsTeamFoundationServicesAzureRepo(this.RepositoryUrl)) {
             return UrlBuilder.Join(this.AccountUrl, this._collection);
         } else {
             return this.AccountUrl;

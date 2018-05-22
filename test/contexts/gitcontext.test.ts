@@ -131,6 +131,23 @@ describe("GitContext", function() {
         assert.equal(gc.Type, RepositoryType.GIT);
     });
 
+    it("should verify TeamServices origin remote cloned with ssh", function () {
+        const repoName: string = "gitrepo-ssh.v3";
+        const repoPath: string = path.join(__dirname, TEST_REPOS_FOLDER, repoName, DOT_GIT_FOLDER);
+        const gc: GitContext = new GitContext(repoPath, DOT_GIT_FOLDER);
+
+        assert.equal(gc.CurrentBranch, "master");
+        assert.equal(gc.CurrentRef, "refs/heads/master");
+        assert.isTrue(gc.IsSsh);
+        assert.isTrue(gc.IsTeamFoundation);
+        assert.isTrue(gc.IsTeamServices);
+        //The remote URL is the https and no longer has port number
+        assert.equal(gc.RemoteUrl, "https://mytest.azure.com/account/project/_git/repository");
+        assert.equal(gc.RepositoryParentFolder, path.join(__dirname, TEST_REPOS_FOLDER, repoName));
+        assert.equal(gc.RepoFolder, repoPath);
+        assert.equal(gc.Type, RepositoryType.GIT);
+    });
+
     it("should verify TeamFoundationServer origin remote", function() {
         const repoName: string = "tfsrepo";
         const repoPath: string = path.join(__dirname, TEST_REPOS_FOLDER, repoName, DOT_GIT_FOLDER);

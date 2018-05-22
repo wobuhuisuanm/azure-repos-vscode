@@ -22,14 +22,14 @@ describe("TeamServicesClient-Integration", function() {
 
     before(function() {
         UserAgentProvider.VSCodeVersion = "0.0.0";
-        return credentialManager.StoreCredentials(TestSettings.Account, TestSettings.AccountUser, TestSettings.Password);
+        return credentialManager.StoreCredentials(ctx, TestSettings.AccountUser, TestSettings.Password);
     });
     beforeEach(function() {
         return credentialManager.GetCredentials(ctx);
     });
     //afterEach(function() { });
     after(function() {
-        return credentialManager.RemoveCredentials(TestSettings.Account);
+        return credentialManager.RemoveCredentials(ctx);
     });
 
     it("should verify repositoryClient.getVstsInfo", async function() {

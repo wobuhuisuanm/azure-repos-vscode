@@ -8,6 +8,7 @@ import { IRequestHandler } from "vso-node-api/interfaces/common/VsoBaseInterface
 import { CredentialInfo } from "../info/credentialinfo";
 import { TeamServerContext } from "../contexts/servercontext";
 import { CredentialStore } from "../credentialstore/credentialstore";
+import { RepoUtils } from "./repoutils";
 
 import * as Q from "q";
 
@@ -41,10 +42,10 @@ export class CredentialManager {
         return deferred.promise;
     }
 
-    public RemoveCredentials(account: string) : Q.Promise<void> {
+    public RemoveCredentials(context:TeamServerContext) : Q.Promise<void> {
         const deferred: Q.Deferred<void> = Q.defer<void>();
 
-        this._credentialStore.RemoveCredential(account).then(() => {
+        this._credentialStore.RemoveCredential(CredentialManager.getKeyFromContext(context)).then(() => {
             deferred.resolve(undefined);
         }).catch((reason) => {
             deferred.reject(reason);
@@ -52,10 +53,10 @@ export class CredentialManager {
         return deferred.promise;
     }
 
-    public StoreCredentials(account: string, username: string, password: string) : Q.Promise<void> {
+    public StoreCredentials(context:TeamServerContext, username: string, password: string) : Q.Promise<void> {
         const deferred: Q.Deferred<void> = Q.defer<void>();
 
-        this._credentialStore.SetCredential(account, username, password).then(() => {
+        this._credentialStore.SetCredential(CredentialManager.getKeyFromContext(context), username, password).then(() => {
             deferred.resolve(undefined);
         }).catch((reason) => {
             deferred.reject(reason);
@@ -66,7 +67,7 @@ export class CredentialManager {
     private getCredentials(context:TeamServerContext) : Q.Promise<CredentialInfo> {
         const deferred: Q.Deferred<CredentialInfo> = Q.defer<CredentialInfo>();
 
-        this._credentialStore.GetCredential(context.RepoInfo.Host).then((cred) => {
+        this._credentialStore.GetCredential(CredentialManager.getKeyFromContext(context)).then((cred) => {
             if (cred !== undefined) {
                 if (context.RepoInfo.IsTeamServices) {
                     deferred.resolve(new CredentialInfo(cred.Password));
@@ -87,5 +88,12 @@ export class CredentialManager {
             deferred.reject(reason);
         });
         return deferred.promise;
+    }
+
+    private static getKeyFromContext(context:TeamServerContext): string {
+        if (RepoUtils.IsTeamFoundationServicesAzureRepo(context.RepoInfo.AccountUrl)) {
+            return context.RepoInfo.Host + "/" + context.RepoInfo.Account;
+        }
+        return context.RepoInfo.Host;
     }
 }
