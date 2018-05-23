@@ -45,12 +45,19 @@ describe("RepoUtils", function() {
     });
 
     it("should ensure Team Services urls are not valid Team Foundation Server Git urls", function() {
+        //If given a team foundation services url, IsTeamFoundationServerRepo will return false
         let url : string;
         url = "https://mseng.visualstudio.com/VSOnline/_git/Java.VSCode.CredentialStore";
         assert.isFalse(RepoUtils.IsTeamFoundationServerRepo(url));
         url = "https://mseng.visualstudio.com/DefaultCollection/VSOnline/_git/Java.IntelliJ";
         assert.isFalse(RepoUtils.IsTeamFoundationServerRepo(url));
+        url = "https://test.azure.com/mseng/VSOnline/_git/Java.VSCode.CredentialStore";
+        assert.isFalse(RepoUtils.IsTeamFoundationServerRepo(url));
+        url = "https://test.azure.com/mseng/VSOnline/_git/Java.IntelliJ";
+        assert.isFalse(RepoUtils.IsTeamFoundationServerRepo(url));
         url = "ssh://mseng@mseng.visualstudio.com:22/DefaultCollection/VSOnline/_git/Java.IntelliJ/";
+        assert.isFalse(RepoUtils.IsTeamFoundationServerRepo(url));
+        url = "git@ssh.mytest.azure.com:v3/account/project/repository";
         assert.isFalse(RepoUtils.IsTeamFoundationServerRepo(url));
     });
 
@@ -60,11 +67,19 @@ describe("RepoUtils", function() {
         assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
         url = "https://mseng.visualstudio.com/DefaultCollection/VSOnline/_git/Java.IntelliJ";
         assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
+        url = "https://test.azure.com/mseng/VSOnline/_git/Java.VSCode.CredentialStore";
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
+        url = "https://test.azure.com/mseng/VSOnline/_git/Java.IntelliJ";
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
         //SSH urls would be valid
         url = "ssh://mseng@mseng.visualstudio.com:22/DefaultCollection/VSOnline/_git/Java.IntelliJ/";
         assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
         //New-style SSH urls (with _ssh instead of _git) should be valid as well
         url = "ssh://acctname@vs-ssh.visualstudio.com:22/DefaultCollection/_ssh/reponame";
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
+        url = "git@ssh.mytest.azure.com:v3/account/project/repository";
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
+        url = "git@vs-ssh.visualstudio.com:v3/account/project/repository";
         assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
     });
 
@@ -93,6 +108,28 @@ describe("RepoUtils", function() {
         assert.isFalse(RepoUtils.IsTeamFoundationServicesRepo(url));
         url = "ssh://sources2010:22/tfs/DefaultCollection/_git/GitAgile";
         assert.isFalse(RepoUtils.IsTeamFoundationServicesRepo(url));
+        url = "git@ssh.mytest.azure.com:v2/account/project/repository";
+        assert.isFalse(RepoUtils.IsTeamFoundationServicesRepo(url));
+    });
+
+    it("should ensure valid Team Services Azure Git urls", function() {
+        let url : string;
+        url = "https://test.azure.com/mseng/VSOnline/_git/Java.VSCode.CredentialStore";
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesAzureRepo(url));
+        url = "https://test.azure.com/mseng/VSOnline/_git/Java.IntelliJ";
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesAzureRepo(url));
+        url = "git@ssh.mytest.azure.com:v3/account/project/repository";
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesAzureRepo(url));
+    });
+
+    it("should ensure VisualStudio Team Services domain urls are not valid Team Services Azure Git urls", function() {
+        let url : string;
+        url = "https://mseng.visualstudio.com/VSOnline/_git/Java.VSCode.CredentialStore";
+        assert.isFalse(RepoUtils.IsTeamFoundationServicesAzureRepo(url));
+        url = "https://mseng.visualstudio.com/DefaultCollection/VSOnline/_git/Java.IntelliJ";
+        assert.isFalse(RepoUtils.IsTeamFoundationServicesAzureRepo(url));
+        url = "https://mseng.visualstudio.com/azure.com/azure.com/_git/azure.com";
+        assert.isFalse(RepoUtils.IsTeamFoundationServicesAzureRepo(url));
     });
 
     it("should ensure valid Team Foundation Git urls", function() {
@@ -100,7 +137,13 @@ describe("RepoUtils", function() {
         url = "http://sources2010/tfs/DefaultCollection/_git/repo";
         assert.isTrue(RepoUtils.IsTeamFoundationGitRepo(url));
         url = "https://account.visualstudio.com/DefaultCollection/VSOnline/_git/Java.IntelliJ";
-        assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
+        assert.isTrue(RepoUtils.IsTeamFoundationGitRepo(url));
+        url = "https://test.azure.com/account/VSOnline/_git/Java.IntelliJ";
+        assert.isTrue(RepoUtils.IsTeamFoundationGitRepo(url));
+        url = "git@ssh.mytest.azure.com:v3/account/project/repository";
+        assert.isTrue(RepoUtils.IsTeamFoundationGitRepo(url));
+        url = "git@vs-ssh.visualstudio.com:v3/account/project/repository";
+        assert.isTrue(RepoUtils.IsTeamFoundationGitRepo(url));
     });
 
     it("should allow any other url as a valid Team Foundation repository", function() {
@@ -134,6 +177,28 @@ describe("RepoUtils", function() {
         url = "https://account.visualstudio.com/DefaultCollection/VSOnline/Java.IntelliJ";
         assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url), "Java.IntelliJ url is not detected as a valid Team Services repo");
         assert.isFalse(RepoUtils.IsTeamFoundationGitRepo(url), "Java.IntelliJ url is  detected as a valid Git repo");
+        url = "https://test.azure.com/account/VSOnline/Java.IntelliJ";
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url), "Java.IntelliJ url is not detected as a valid Team Services repo");
+        assert.isFalse(RepoUtils.IsTeamFoundationGitRepo(url), "Java.IntelliJ url is  detected as a valid Git repo");
     });
 
+    it("should verify if a V3 ssh url", function() {
+        let url : string;
+
+        url = "git@ssh.mytest.azure.com:v3/account/project/repository";
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesV3SshRepo(url));
+        url = "git@vs-ssh.visualstudio.com:v3/account/project/repository";
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesV3SshRepo(url));
+        url = "ssh://sources2010:22/tfs/DefaultCollection/_git/GitAgile";
+        assert.isFalse(RepoUtils.IsTeamFoundationServicesV3SshRepo(url));
+    });
+
+    it("should convert V3 ssh url to git url", function() {
+        let url : string;
+
+        url = "git@ssh.mytest.azure.com:v3/account/project/repository";
+        assert.equal(RepoUtils.ConvertSshV3ToUrl(url), "https://mytest.azure.com/account/project/_git/repository");
+        url = "git@vs-ssh.visualstudio.com:v3/account/project/repository";
+        assert.equal(RepoUtils.ConvertSshV3ToUrl(url), "https://account.visualstudio.com/project/_git/repository");
+    });
 });

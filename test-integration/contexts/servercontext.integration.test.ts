@@ -19,14 +19,14 @@ describe("ServerContext-Integration", function() {
     const ctx: TeamServerContext = Mocks.TeamServerContext(TestSettings.RemoteRepositoryUrl);
 
     before(function() {
-        return credentialManager.StoreCredentials(TestSettings.Account, TestSettings.AccountUser, TestSettings.Password);
+        return credentialManager.StoreCredentials(ctx, TestSettings.AccountUser, TestSettings.Password);
     });
     beforeEach(function() {
         return credentialManager.GetCredentials(ctx);
     });
     // afterEach(function() { });
     after(function() {
-        return credentialManager.RemoveCredentials(TestSettings.Account);
+        return credentialManager.RemoveCredentials(ctx);
     });
 
     it("should verify ServerContext CredentialHandler, UserInfo", function(done) {

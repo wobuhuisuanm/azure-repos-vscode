@@ -23,14 +23,14 @@ describe("WorkItemTrackingService-Integration", function() {
 
     before(function() {
         UserAgentProvider.VSCodeVersion = "0.0.0";
-        return credentialManager.StoreCredentials(TestSettings.Account, TestSettings.AccountUser, TestSettings.Password);
+        return credentialManager.StoreCredentials(ctx, TestSettings.AccountUser, TestSettings.Password);
     });
     beforeEach(function() {
         return credentialManager.GetCredentials(ctx);
     });
     // afterEach(function() { });
     after(function() {
-        return credentialManager.RemoveCredentials(TestSettings.Account);
+        return credentialManager.RemoveCredentials(ctx);
     });
 
     //Even though CreateWorkItem isn't exposed in the extension, run it so we can get to 200, then 20,000

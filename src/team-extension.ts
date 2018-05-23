@@ -154,7 +154,7 @@ export class TeamExtension  {
                     const password: string = await window.showInputBox({ value: "", prompt: Strings.ProvidePassword + " (" + username + ")", placeHolder: "", password: true });
                     if (password !== undefined) {
                         Logger.LogInfo("Signin: Username and Password provided as authentication.");
-                        this._manager.CredentialManager.StoreCredentials(this._manager.ServerContext.RepoInfo.Host, username, password).then(() => {
+                        this._manager.CredentialManager.StoreCredentials(this._manager.ServerContext, username, password).then(() => {
                             // We don't test the credentials to make sure they're good here.  Do so on the next command that's run.
                             Logger.LogDebug(`Reinitializing after successfully storing credentials for Team Foundation Server.`);
                             this._manager.Reinitialize();
@@ -171,7 +171,7 @@ export class TeamExtension  {
                     const token: string = await this.requestPersonalAccessToken();
                     if (token !== undefined) {
                         Logger.LogInfo(`Signin: Personal Access Token provided as authentication.`);
-                        this._manager.CredentialManager.StoreCredentials(this._manager.ServerContext.RepoInfo.Host, Constants.OAuth, token.trim()).then(() => {
+                        this._manager.CredentialManager.StoreCredentials(this._manager.ServerContext, Constants.OAuth, token.trim()).then(() => {
                             Logger.LogDebug(`Reinitializing after successfully storing credentials for Team Services.`);
                             this._manager.Reinitialize();
                         }).catch((err) => {
@@ -213,7 +213,7 @@ export class TeamExtension  {
         // For Logout, we just need to verify _serverContext and don't want to set this._errorMessage
         if (this._manager.ServerContext !== undefined && this._manager.ServerContext.RepoInfo !== undefined && this._manager.ServerContext.RepoInfo.IsTeamFoundation === true) {
             Logger.LogDebug(`Starting sign out process`);
-            this._manager.CredentialManager.RemoveCredentials(this._manager.ServerContext.RepoInfo.Host).then(() => {
+            this._manager.CredentialManager.RemoveCredentials(this._manager.ServerContext).then(() => {
                 Logger.LogInfo(`Signout: Removed credentials for host '${this._manager.ServerContext.RepoInfo.Host}'`);
             }).catch((err) => {
                 const msg: string = Strings.UnableToRemoveCredentials + this._manager.ServerContext.RepoInfo.Host;
