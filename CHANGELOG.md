@@ -1,4 +1,21 @@
+# Change Log
 
+## [v1.136.0](https://github.com/Microsoft/vsts-vscode/tree/v1.136.0) (2018-05-23)
+[Full Changelog](https://github.com/Microsoft/vsts-vscode/compare/v1.133.0...v1.136.0)
+
+**Closed issues:**
+
+- VSTS has stopped tracking changes [\#403](https://github.com/Microsoft/vsts-vscode/issues/403)
+- New-TfsChangeset used in powershell script as a build step [\#402](https://github.com/Microsoft/vsts-vscode/issues/402)
+- \(Team\)Unable to store credentials for this Host: [\#396](https://github.com/Microsoft/vsts-vscode/issues/396)
+- VSTS modal dialog close event [\#390](https://github.com/Microsoft/vsts-vscode/issues/390)
+- Can not "Associate work items" after updating to VScode 1.16 [\#314](https://github.com/Microsoft/vsts-vscode/issues/314)
+
+**Merged pull requests:**
+
+- Add support for azure.com and other SSH URL formats [\#407](https://github.com/Microsoft/vsts-vscode/pull/407) ([jeschu1](https://github.com/jeschu1))
+- Consuming new version of vsts-device-flow-auth [\#406](https://github.com/Microsoft/vsts-vscode/pull/406) ([chrisrpatterson](https://github.com/chrisrpatterson))
+- Update readme to clarify TF.exe authentication [\#372](https://github.com/Microsoft/vsts-vscode/pull/372) ([b-e-n-j](https://github.com/b-e-n-j))
 
 ## [v1.133.0](https://github.com/Microsoft/vsts-vscode/tree/v1.133.0) (2018-04-03)
 [Full Changelog](https://github.com/Microsoft/vsts-vscode/compare/v1.122.0...v1.133.0)
