@@ -10,7 +10,7 @@ import { RepositoryInfo } from "../../src/info/repositoryinfo";
 
 describe("RepositoryInfo", function() {
 
-    /* Team Server URLs */
+    /* Team Foundation Server URLs */
     it("should verify host, account and isTeamFoundationServer for valid remoteUrl", function() {
         const url: string = "http://jeyou-dev00000:8080/tfs/DefaultCollection/_git/GitAgile";
         const repoInfo: RepositoryInfo = new RepositoryInfo(url);

@@ -32,7 +32,7 @@ describe("CredentialManager-Integration", function() {
         return credentialManager.RemoveCredentials(ctx);
     });
 
-    it("should verify store, get, remove credentials for Team Services (no token in settings)", async function() {
+    it("should verify store, get, remove credentials for Azure DevOps Services (no token in settings)", async function() {
         try {
             await credentialManager.StoreCredentials(ctx, TestSettings.AccountUser, TestSettings.Password);
             let credInfo: CredentialInfo = await credentialManager.GetCredentials(ctx);

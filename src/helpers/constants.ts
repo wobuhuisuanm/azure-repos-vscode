@@ -7,17 +7,17 @@
 /* tslint:disable:variable-name */
 export class Constants {
     static ExtensionName: string = "team";
-    static ExtensionUserAgentName: string = "VSTSVSCode";
+    static ExtensionUserAgentName: string = "AzureReposVSCode";
     static ExtensionVersion: string = "1.136.0";
     static OAuth: string = "OAuth";
     static TokenLearnMoreUrl: string = "https://aka.ms/v9r4jt";
     static TokenShowMeUrl: string = "https://aka.ms/o2wkmo";
     static ReadmeLearnMoreUrl: string = "https://aka.ms/jkapah";
-    static TfvcLearnMoreUrl: string = "https://github.com/Microsoft/vsts-vscode/blob/master/TFVC_README.md#quick-start";
-    static ServerWorkspaceUrl: string = "https://github.com/Microsoft/vsts-vscode/blob/master/TFVC_README.md#what-is-the-difference-between-a-local-and-server-workspace-how-can-i-tell-which-one-im-working-with";
+    static TfvcLearnMoreUrl: string = "https://github.com/Microsoft/azure-repos-vscode/blob/master/TFVC_README.md#quick-start";
+    static ServerWorkspaceUrl: string = "https://github.com/Microsoft/azure-repos-vscode/blob/master/TFVC_README.md#what-is-the-difference-between-a-local-and-server-workspace-how-can-i-tell-which-one-im-working-with";
     static VS2015U3CSRUrl: string = "https://msdn.microsoft.com/en-us/library/mt752379.aspx";
-    static WorkspaceNotDetectedByClcUrl: string = "https://github.com/Microsoft/vsts-vscode/blob/master/TFVC_README.md#using-the-tee-clc-i-am-unable-to-access-an-existing-local-workspace-what-can-i-do";
-    static NonEnuTfExeConfiguredUrl: string = "https://github.com/Microsoft/vsts-vscode/blob/master/TFVC_README.md#i-received-the-it-appears-you-have-configured-a-non-english-version-of-the-tf-executable-please-ensure-an-english-version-is-properly-configured-error-message-after-configuring-tfexe-how-can-i-get-the-extension-to-work-properly";
+    static WorkspaceNotDetectedByClcUrl: string = "https://github.com/Microsoft/azure-repos-vscode/blob/master/TFVC_README.md#using-the-tee-clc-i-am-unable-to-access-an-existing-local-workspace-what-can-i-do";
+    static NonEnuTfExeConfiguredUrl: string = "https://github.com/Microsoft/azure-repos-vscode/blob/master/TFVC_README.md#i-received-the-it-appears-you-have-configured-a-non-english-version-of-the-tf-executable-please-ensure-an-english-version-is-properly-configured-error-message-after-configuring-tfexe-how-can-i-get-the-extension-to-work-properly";
 }
 
 export class CommandNames {

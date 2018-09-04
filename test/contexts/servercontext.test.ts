@@ -18,7 +18,7 @@ describe("TeamServerContext", function() {
         }
     });
 
-    it("should verify context is a TeamFoundation context with Team Services account", function() {
+    it("should verify context is a TeamFoundation context with Azure DevOps Services", function() {
         // This could be a TFVC repository
         const context: TeamServerContext = new TeamServerContext("https://account.visualstudio.com/DefaultCollection/teamproject/");
         assert.isTrue(context.RepoInfo.IsTeamServices);

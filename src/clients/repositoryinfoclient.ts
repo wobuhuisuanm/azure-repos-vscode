@@ -71,7 +71,7 @@ export class RepositoryInfoClient {
                     Logger.LogDebug(errorMsg);
                     throw new Error(errorMsg);
                 }
-                Logger.LogDebug(`Successfully validated the Team Services TFVC repository. Collection name: '${collectionName}', 'Url: ${serverUrl}'`);
+                Logger.LogDebug(`Successfully validated the hosted TFVC repository. Collection name: '${collectionName}', 'Url: ${serverUrl}'`);
             } else { //This could be either a TFVC context or an External context
                 serverUrl = this._repoContext.RemoteUrl;
                 // A full Team Foundation Server collection url is required for the validate call to succeed.

@@ -1,4 +1,4 @@
-Visual Studio Team Services Extension for Visual Studio Code 
+Azure Repos Extension for Visual Studio Code 
 
 Copyright (c) Microsoft Corporation
 

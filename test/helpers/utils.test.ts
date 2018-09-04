@@ -71,7 +71,7 @@ describe("Utils", function() {
 
     it("should verify GetMessageForStatusCode for proxy - ECONNRESET", function() {
         const reason = { code: "ECONNRESET" };
-        process.env.HTTP_PROXY = "vsts-vscode unit tests";
+        process.env.HTTP_PROXY = "azure-repos-vscode unit tests";
         const message: string = Utils.GetMessageForStatusCode(reason);
         process.env.HTTP_PROXY = "";
         assert.equal(message, Strings.ProxyUnreachable);
@@ -79,7 +79,7 @@ describe("Utils", function() {
 
     it("should verify GetMessageForStatusCode for proxy - ECONNREFUSED", function() {
         const reason = { code: "ECONNREFUSED" };
-        process.env.HTTP_PROXY = "vsts-vscode unit tests";
+        process.env.HTTP_PROXY = "azure-repos-vscode unit tests";
         const message: string = Utils.GetMessageForStatusCode(reason);
         process.env.HTTP_PROXY = "";
         assert.equal(message, Strings.ProxyUnreachable);
@@ -145,11 +145,11 @@ describe("Utils", function() {
         const httpProxy: string = process.env.HTTP_PROXY;
         const httpsProxy: string = process.env.HTTPS_PROXY;
         try {
-            process.env.HTTP_PROXY = "vsts-vscode unit tests";
+            process.env.HTTP_PROXY = "azure-repos-vscode unit tests";
             assert.isTrue(Utils.IsProxyEnabled());
             process.env.HTTP_PROXY = "";
             assert.isFalse(Utils.IsProxyEnabled());
-            process.env.HTTPS_PROXY = "vsts-vscode unit tests";
+            process.env.HTTPS_PROXY = "azure-repos-vscode unit tests";
             assert.isTrue(Utils.IsProxyEnabled());
             process.env.HTTPS_PROXY = "";
             assert.isFalse(Utils.IsProxyEnabled());
@@ -166,7 +166,7 @@ describe("Utils", function() {
     it("should verify IsProxyIssue", function() {
         const httpProxy: string = process.env.HTTP_PROXY;
         try {
-            process.env.HTTP_PROXY = "vsts-vscode unit tests";
+            process.env.HTTP_PROXY = "azure-repos-vscode unit tests";
             let reason: any = { code: "ECONNRESET" };
             assert.isTrue(Utils.IsProxyIssue(reason));
             let reason2: any = { statusCode: "ECONNRESET" };

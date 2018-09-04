@@ -11,29 +11,29 @@ export class Strings {
     static BrowseYourPullRequests: string = "Browse your pull requests.";
     static BrowseAdditionalWorkItems: string = "Browse additional work items...";
     static BrowseAdditionalWorkItemsDescription: string = "Choose this item to see all query results in your web browser";
-    static FolderNotOpened: string = "You must open a repository folder in order to use the Team Services extension.";
+    static FolderNotOpened: string = "You must open a repository folder in order to use the Azure Repos extension.";
     static NavigateToBuildSummary: string = "Click to view build";
     static NavigateToTeamServicesWebSite: string = "Click to view your team project website.";
-    static NoAccessTokenFound: string = "A personal access token for this Team Services repository was not found in your local user settings.";
-    static NoAccessTokenLearnMoreRunSignin: string = "You are not connected to Team Services (%s). Select 'Learn more...' and then run the 'team signin' command.";
-    static NoAccessTokenRunSignin: string = "You are not connected to Team Services (%s). Please run the 'team signin' command.";
+    static NoAccessTokenFound: string = "A personal access token for this repository hosted on Azure DevOps Services was not found in your local user settings.";
+    static NoAccessTokenLearnMoreRunSignin: string = "You are not connected to Azure DevOps Services (%s). Select 'Learn more...' and then run the 'team signin' command.";
+    static NoAccessTokenRunSignin: string = "You are not connected to Azure DevOps Services (%s). Please run the 'team signin' command.";
     static NoTeamServerCredentialsRunSignin: string = "You are not connected to a Team Foundation Server. Please run the 'team signin' command.";
     static NoBuildsFound: string = "No builds were found for this repository and branch. Click to view your team project's build definitions page.";
     static NoTfvcBuildsFound: string = "No builds were found for this repository. Click to view your team project's build definitions page.";
-    static NoRepoInformation: string = "No Team Services or Team Foundation Server repository configuration was found. Ensure you've opened a folder that contains a repository.";
+    static NoRepoInformation: string = "No Azure DevOps Services or Team Foundation Server repository configuration was found. Ensure you've opened a folder that contains a repository.";
     static NoSourceFileForBlame: string = "A source file must be opened to show blame information.";
     static UserMustSignIn: string = "You are signed out. Please run the 'team signin' command.";
 
-    static DeviceFlowAuthenticatingToTeamServices: string = "Authenticating to Team Services (%s)...";
+    static DeviceFlowAuthenticatingToTeamServices: string = "Authenticating to Azure DevOps Services (%s)...";
     static DeviceFlowCopyCode: string = "Copy this code and then press Enter to start the authentication process";
     static DeviceFlowManualPrompt: string = "Provide an access token manually (current experience)";
     static DeviceFlowPrompt: string = "Authenticate and get an access token automatically (new experience)";
-    static DeviceFlowPlaceholder: string = "Choose your method of authenticating to Team Services...";
+    static DeviceFlowPlaceholder: string = "Choose your method of authenticating to Azure DevOps Services...";
     static ErrorRequestingToken: string = "An error occurred requesting a personal access token for %s.";
 
     static SendAFrown: string = "Send a Frown";
     static SendASmile: string = "Send a Smile";
-    static SendFeedback: string = "Send us feedback about the Team Services extension!";
+    static SendFeedback: string = "Send us feedback about the Azure Repos extension!";
     static SendFeedbackPrompt: string = "Enter your feedback here (1000 char limit)";
     static NoFeedbackSent: string = "No feedback was sent.";
     static ThanksForFeedback: string = "Thanks for sending feedback!";
@@ -51,16 +51,16 @@ export class Strings {
     static ChooseWorkItemType: string = "Choose a work item type";
     static ClickToRetryConnection: string = "Click to retry.";
 
-    static ProvideAccessToken: string = "Provide the personal access token for your account";
+    static ProvideAccessToken: string = "Provide the personal access token for your organization";
     static ProvidePassword: string = "Provide the password for username";
     static ProvideUsername: string = "Provide the username for server";
 
     static UnsupportedWitServerVersion: string = "Work Item Tracking (WIT) functionality is disabled. WIT functionality requires TFS version 2015 Update 2 or later.";
-    static UnsupportedServerVersion: string = "The Team Services extension only supports TFS version 2015 Update 2 or later. Please verify your TFS server version.";
+    static UnsupportedServerVersion: string = "The Azure Repos extension only supports TFS version 2015 Update 2 or later. Please verify your TFS server version.";
     static UnableToRemoveCredentials: string = "Unable to remove credentials for this host. You may need to remove them manually. Host: ";
     static UnableToStoreCredentials: string = "Unable to store credentials for this host. Host: ";
 
-    static UnableToValidateTeamServicesCollection: string = "Unable to validate the Team Services collection.";
+    static UnableToValidateTeamServicesCollection: string = "Unable to validate the Azure DevOps Services collection.";
     static UnableToValidateCollectionAssumingDefaultCollection: string = "Unable to validate the collection assuming 'DefaultCollection'.";
 
     //Status codes

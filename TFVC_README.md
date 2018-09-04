@@ -17,8 +17,8 @@ Here are the currently supported features provided by the extension:
 
 ## Quick Start
 Below is a short list of steps to get up-and-running with TFVC support. Be sure to check out the other TFVC documentation on this page.
-- [Install the Team Services extension](#the-visual-studio-code-extension) for Visual Studio Code.
-- For Team Services, ensure you have a Personal Access Token (PAT) with All Scopes available. Team Foundation Server requires your domain credentials. [More info...](#authentication)
+- [Install the Azure Repos extension](#the-visual-studio-code-extension) for Visual Studio Code.
+- For Azure DevOps Services, ensure you have a Personal Access Token (PAT) with All Scopes available. Team Foundation Server requires your domain credentials. [More info...](#authentication)
 - Ensure you have a [TF command line client installed](#tfvc-command-line-client) (either TF.exe or the TEE CLC).
 - Set the [`tfvc.location`](#configure-tfvc-support) VS Code setting to the full path of your TF command line client.
 - Open a folder containing a *Local* TFVC Workspace and sign in when prompted. [More info...](#open-a-local-tfvc-repository-folder)
@@ -32,15 +32,15 @@ features shown in this video apply equally well to the TFVC support on macOS and
 - [Set up and Configure the TEE CLC on Linux (and macOS)](https://youtu.be/VPNaEIVZfr0) - This video demonstrates how to set
 up the Team Explorer Everywhere Command Line Client (TEE CLC) on Ubuntu. On macOS and Linux, the CLC provides the TFVC capability
 to the extension.
-- [Set up the Team Services extension for Visual Studio Code](https://youtu.be/t6gGfj8WOgg) - If you haven't used the extension
+- [Set up the Azure Repos extension for Visual Studio Code](https://youtu.be/t6gGfj8WOgg) - If you haven't used the extension
 before, this video will show you how to set it up, create a personal access token and get up and running.
-- [Walkthrough of the Team Services extension for Visual Studio Code](https://youtu.be/sk6LrzQX4P8) - This is a walkthrough of
-most of the features of the Team Services extension.
+- [Walkthrough of the Azure Repos extension for Visual Studio Code](https://youtu.be/sk6LrzQX4P8) - This is a walkthrough of
+most of the features of the Azure Repos extension.
 
 ## Prerequisites
-### Visual Studio Team Services
-If you are planning on using the extension with Visual Studio Team Services, ensure you have a Team Services account. If you do
-not have an account, find out how to [sign up for Team Services](https://www.visualstudio.com/en-us/get-started/setup/sign-up-for-visual-studio-team-services).
+### Azure DevOps Services
+If you are using the extension with Azure DevOps Services, ensure you have an Azure DevOps Services organization. If you do
+not have one, [sign up for Azure DevOps Services](https://aka.ms/SignupAzureDevOps/?campaign=azure~repos~vscode~tfvcreadme).
 
 ### Team Foundation Server
 If you are planning on using the extension with Team Foundation Server, you **must** be running Team Foundation
@@ -52,7 +52,7 @@ First, you will need to install [Visual Studio Code](https://code.visualstudio.c
 ### The Visual Studio Code Extension
 To install the extension with the latest version of Visual Studio Code (version 1.11.1 is the latest as of this writing), bring
 up the Visual Studio Code Command Palette (`F1`), type `install` and choose `Extensions: Install Extensions`. In the `Search Extensions in Marketplace`
-text box, type `team`. Find the `Visual Studio Team Services` extension published by *Microsoft* and click the `Install` button.
+text box, type `team`. Find the `Azure Repos` extension published by *Microsoft* and click the `Install` button.
 Restart Visual Studio Code.
 
 ### TFVC Command Line Client
@@ -78,17 +78,17 @@ until this EULA is accepted.
 If you are using the TEE CLC, see how to set it up by viewing [this video](https://youtu.be/VPNaEIVZfr0).
 
 ## Authentication
-### Visual Studio Team Services
-If you are connecting to Team Services, you will need a personal access token (PAT) to securely access your account.
+### Azure DevOps Services
+If you are connecting to Azure DevOps Services, you will need a personal access token (PAT).
 The latest version of the extension will prompt for your token and store it securely. In previous versions of the
 extension, you needed to create a token and store it in your Visual Studio Code settings.
 
-If you do not have a personal access token yet, you will need to create one on your Team Services account.
+If you do not have a personal access token yet, you will need to create one on your Azure DevOps Services organization.
 To create the token, go [here](https://aka.ms/gtgzt4) to read how. You can also [view our video](https://youtu.be/t6gGfj8WOgg)
 on how to do the same.
 * TFVC repositories require tokens with *All Scopes*. Anything less will cause the extension to fail.
 
-In addition to connecting to Team Services using a personal access token (PAT), the TF.exe command line client needs
+In addition to connecting to Azure DevOps Services using a personal access token (PAT), the TF.exe command line client needs
 its own access to the remote repository, otherwise TFVC will fail:
 * Open a command prompt with the correct version of TF.exe in its PATH
 * Enter "tf workspace"
@@ -96,7 +96,7 @@ its own access to the remote repository, otherwise TFVC will fail:
 * You can then close the Workspace window
 
 ### Team Foundation Server
-If you are connecting to Team Foundation Server, you will only need your NTLM credentials (domain name, account name
+If you are connecting to Team Foundation Server, you will only need your NTLM credentials (domain name, server name
 and password). It is assumed that you have the proper permissions on the TFS Server.
 
 ## Configure TFVC Support
@@ -126,9 +126,9 @@ The indicator looks like this:
 
 ![Team Error indicator](assets/team-error.png)
 
-To sign in to your account, run the `team signin` command or simply click on that indicator. If your repository
-is a Team Services repository, you will be prompted to enter your personal access token. When you do, it will be
-stored securely on your computer and used to connect to Team Services. If your repository is on Team Foundation 
+To sign in, run the `team signin` command or simply click on that indicator. If your repository
+is hosted on Azure Repos, you will be prompted to enter your personal access token. When you do, it will be
+stored securely on your computer and used to connect. If your repository is on Team Foundation 
 Server 2015 Update 2 or later, you will be prompted to enter your username and password. After both are provided, they will
 be stored securely on your computer and used to connect to your TFS server.
 
@@ -255,13 +255,13 @@ Unfortunately, TF.exe doesn't provide the ability to associate work items on che
 servers that have check-in policies enabled, you must use the TEE CLC (which does provide support for associating work items on check-in). Follow [these instructions](#how-do-i-set-up-the-clc-on-windows) to set up the TEE CLC on Windows.
 
 ### *Many files are showing up in the TFVC Viewlet that don't show up in the Visual Studio IDE. How can I ignore them?*
-The Visual Studio IDE shows these files as 'Detected Changes' and simply displays the number of them. The TFVC Viewlet will display each file individually. See [this issue](https://github.com/Microsoft/vsts-vscode/issues/248) for an example of what you may see. To properly ignore these files,
+The Visual Studio IDE shows these files as 'Detected Changes' and simply displays the number of them. The TFVC Viewlet will display each file individually. See [this issue](https://github.com/Microsoft/azure-repos-vscode/issues/248) for an example of what you may see. To properly ignore these files,
 create a `.tfignore` file and add it to the root folder of your TFVC repository. (You will also want to check this file in.) You can find the official documentation on how to do this [here](https://www.visualstudio.com/en-us/docs/tfvc/add-files-server#customize-which-files-are-ignored-by-version-control).
 To get started easily, copy this [example file](https://www.visualstudio.com/en-us/docs/tfvc/add-files-server#tfignore-file-example), place it in the root of your repository, update it as necessary and check it in. For example, if you want to ignore all files under the `node_modules` folder, you
 would add a `\node_modules` entry to the `.tfignore` file.
 
 ### *I already have Visual Studio installed. How can I determine the location of TF.exe?*
-Here's a tip from **@dsolodow** ([original comment](https://github.com/Microsoft/vsts-vscode/issues/269#issuecomment-311837077)): _When you install Visual Studio, it creates a Start Menu shortcut called "Developer Command Prompt for VS YEAR" where YEAR is 2015, 2017, etc. If you launch that, and then at that prompt run `where tf.exe` it will give you the full path to it that you can then put into the settings.json._
+Here's a tip from **@dsolodow** ([original comment](https://github.com/Microsoft/azure-repos-vscode/issues/269#issuecomment-311837077)): _When you install Visual Studio, it creates a Start Menu shortcut called "Developer Command Prompt for VS YEAR" where YEAR is 2015, 2017, etc. If you launch that, and then at that prompt run `where tf.exe` it will give you the full path to it that you can then put into the settings.json._
 
 ### *How can I acquire TF.exe? Do I need a version of Visual Studio?*
 Yes, you do need a version of Visual Studio. While TF.exe comes with the Community, Enterprise and Professional versions of Visual Studio 2017, there is also a free, standalone "Visual Studio Team Explorer 2017" version that contains TF.exe. You can find all 
@@ -269,14 +269,14 @@ of the versions of Visual Studio (including Team Explorer) on the [Visual Studio
 notes for Team Explorer 2017 can be found [here](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes-v15.1#te).
 
 ### *Where is the support for Server workspaces?*
-At this time, it's still on the backlog. The issue tracking support for Server workspaces is [here](https://github.com/Microsoft/vsts-vscode/issues/176).
+At this time, it's still on the backlog. The issue tracking support for Server workspaces is [here](https://github.com/Microsoft/azure-repos-vscode/issues/176).
 
 ### *What is the difference between a Local and Server workspace? How can I tell which one I'm working with?*
 You can read about the differences between the two in [our documentation](https://www.visualstudio.com/en-us/docs/tfvc/decide-between-using-local-server-workspace).
 Using `tf.exe` on Windows, you can determine which type of workspace you have by running `tf workspace` from the folder where your workspace resides. When you do, a dialog box similar to the one below will be displayed and you can see the type of workspace in the `Location` field (you may need to click the `Advanced >>` button). To change
 the type of workspace, update the `Location` field and click `OK`.
 
-![Visual Studio Team Services extension](assets/tf-workspace-dialog.png)
+![Azure Repos extension](assets/tf-workspace-dialog.png)
 
 ## Further Information
 For information on other features of the extension, support, licensing, privacy, or contributing code, please review the main [README](README.md) file.
