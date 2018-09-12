@@ -44,7 +44,7 @@ describe("RepoUtils", function() {
         assert.isTrue(RepoUtils.IsTeamFoundationServerRepo(url));
     });
 
-    it("should ensure Team Services urls are not valid Team Foundation Server Git urls", function() {
+    it("should ensure Azure DevOps Services urls are not valid Team Foundation Server Git urls", function() {
         //If given a team foundation services url, IsTeamFoundationServerRepo will return false
         let url : string;
         url = "https://mseng.visualstudio.com/VSOnline/_git/Java.VSCode.CredentialStore";
@@ -61,7 +61,7 @@ describe("RepoUtils", function() {
         assert.isFalse(RepoUtils.IsTeamFoundationServerRepo(url));
     });
 
-    it("should ensure valid Team Services Git urls", function() {
+    it("should ensure valid Azure Repos Git urls", function() {
         let url : string;
         url = "https://mseng.visualstudio.com/VSOnline/_git/Java.VSCode.CredentialStore";
         assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
@@ -83,7 +83,7 @@ describe("RepoUtils", function() {
         assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url));
     });
 
-    it("should ensure Team Server urls are not valid Team Services Git urls", function() {
+    it("should ensure Team Foundation Server urls are not valid Azure DevOps Services Git urls", function() {
         let url : string;
 
         url = "http://pioneer-new-dt:8080/tfs/DevDiv_Projects2/_git/JavaALM";
@@ -112,7 +112,7 @@ describe("RepoUtils", function() {
         assert.isFalse(RepoUtils.IsTeamFoundationServicesRepo(url));
     });
 
-    it("should ensure valid Team Services Azure Git urls", function() {
+    it("should ensure valid Azure DevOps Services Git urls on azure.com domain", function() {
         let url : string;
         url = "https://test.azure.com/mseng/VSOnline/_git/Java.VSCode.CredentialStore";
         assert.isTrue(RepoUtils.IsTeamFoundationServicesAzureRepo(url));
@@ -122,7 +122,7 @@ describe("RepoUtils", function() {
         assert.isTrue(RepoUtils.IsTeamFoundationServicesAzureRepo(url));
     });
 
-    it("should ensure VisualStudio Team Services domain urls are not valid Team Services Azure Git urls", function() {
+    it("should ensure Azure DevOps Services URLs on visualstudio.com domain are not valid Azure DevOps Services Git URLs on azure.com domain", function() {
         let url : string;
         url = "https://mseng.visualstudio.com/VSOnline/_git/Java.VSCode.CredentialStore";
         assert.isFalse(RepoUtils.IsTeamFoundationServicesAzureRepo(url));
@@ -154,31 +154,31 @@ describe("RepoUtils", function() {
 
         //This is true because we know it isn't Git but not that it isn't Tfvc
         // url = "https://account.visualstudio.com/DefaultCollection/VSOnline/Java.IntelliJ";
-        // assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url), "Java.IntelliJ url is not detected as a valid Team Services repo");
+        // assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url), "Java.IntelliJ url is not detected as a valid Azure DevOps Services repo");
 
         //This is true because we know it isn't Git but not that it isn't Tfvc
         //(we could write explicit code for GitHub but are not choosing to do so now)
         url = "git@github.com:Microsoft/Git-Credential-Manager-for-Mac-and-Linux.git";
-        assert.isTrue(RepoUtils.IsTeamFoundationServerRepo(url), "GitHub SSH url is not detected as a valid Team Services repo");
+        assert.isTrue(RepoUtils.IsTeamFoundationServerRepo(url), "GitHub SSH url is not detected as a valid Azure DevOps Services repo");
 
         //This is true because we know it isn't Git but not that it isn't Tfvc
         //(we could write explicit code for GitHub but are not choosing to do so now)
-        url = "https://github.com/Microsoft/vsts-vscode.git";
-        assert.isTrue(RepoUtils.IsTeamFoundationServerRepo(url), "GitHub url is not detected as a valid Team Services repo");
+        url = "https://github.com/Microsoft/azure-repos-vscode.git";
+        assert.isTrue(RepoUtils.IsTeamFoundationServerRepo(url), "GitHub url is not detected as a valid Azure DevOps Services repo");
 
         //This is true because we know it isn't Git but not that it isn't Tfvc
         url = "foo";
-        assert.isTrue(RepoUtils.IsTeamFoundationServerRepo(url), "foo url is not detected as a valid Team Services repo");
+        assert.isTrue(RepoUtils.IsTeamFoundationServerRepo(url), "foo url is not detected as a valid Azure DevOps Services repo");
     });
 
-    it("should detect a valid Team Services repository but not as a Git repository", function() {
+    it("should detect a valid Azure DevOps Services repository but not as a Git repository", function() {
         let url : string;
 
         url = "https://account.visualstudio.com/DefaultCollection/VSOnline/Java.IntelliJ";
-        assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url), "Java.IntelliJ url is not detected as a valid Team Services repo");
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url), "Java.IntelliJ url is not detected as a valid Azure DevOps Services repo");
         assert.isFalse(RepoUtils.IsTeamFoundationGitRepo(url), "Java.IntelliJ url is  detected as a valid Git repo");
         url = "https://test.azure.com/account/VSOnline/Java.IntelliJ";
-        assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url), "Java.IntelliJ url is not detected as a valid Team Services repo");
+        assert.isTrue(RepoUtils.IsTeamFoundationServicesRepo(url), "Java.IntelliJ url is not detected as a valid Azure DevOps Services repo");
         assert.isFalse(RepoUtils.IsTeamFoundationGitRepo(url), "Java.IntelliJ url is  detected as a valid Git repo");
     });
 

@@ -93,7 +93,7 @@ export class TeamExtension  {
                     userAgent: `${UserAgentProvider.UserAgent}`
                 };
                 const tokenOptions: IDeviceFlowTokenOptions = {
-                    tokenDescription: `VSTS VSCode extension: ${this._manager.ServerContext.RepoInfo.AccountUrl} on ${os.hostname()}`
+                    tokenDescription: `Azure Repos VSCode extension: ${this._manager.ServerContext.RepoInfo.AccountUrl} on ${os.hostname()}`
                 };
                 const dfa: DeviceFlowAuthenticator = new DeviceFlowAuthenticator(this._manager.ServerContext.RepoInfo.AccountUrl, authOptions, tokenOptions);
                 const details: DeviceFlowDetails = await dfa.GetDeviceFlowDetails();
@@ -172,7 +172,7 @@ export class TeamExtension  {
                     if (token !== undefined) {
                         Logger.LogInfo(`Signin: Personal Access Token provided as authentication.`);
                         this._manager.CredentialManager.StoreCredentials(this._manager.ServerContext, Constants.OAuth, token.trim()).then(() => {
-                            Logger.LogDebug(`Reinitializing after successfully storing credentials for Team Services.`);
+                            Logger.LogDebug(`Reinitializing after successfully storing credentials for Azure DevOps Services.`);
                             this._manager.Reinitialize();
                         }).catch((err) => {
                             // TODO: Should the message direct the user to open an issue?  send feedback?

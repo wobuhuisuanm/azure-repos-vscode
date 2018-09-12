@@ -1,13 +1,13 @@
-# Visual Studio Team Services Extension Contributor Guide
+# Azure Repos Extension Contributor Guide
 The instructions below will help you set up your development environment to contribute to this repository.
 Make sure you've already cloned the repo.  :smile:
 
 ## Ways to Contribute
-Interested in contributing to the vsts-vscode project? There are plenty of ways to contribute, all of which help make the project better.
-* Submit a [bug report](https://github.com/Microsoft/vsts-vscode/issues/new) or [feature request](https://github.com/Microsoft/vsts-vscode/issues/new) through the Issue Tracker
-* Review the [source code changes](https://github.com/Microsoft/vsts-vscode/pulls)
+Interested in contributing to the azure-repos-vscode project? There are plenty of ways to contribute, all of which help make the project better.
+* Submit a [bug report](https://github.com/Microsoft/azure-repos-vscode/issues/new) or [feature request](https://github.com/Microsoft/azure-repos-vscode/issues/new) through the Issue Tracker
+* Review the [source code changes](https://github.com/Microsoft/azure-repos-vscode/pulls)
 * Submit a code fix for a bug (see `Submitting Pull Requests` below)
-* Participate in [discussions](https://github.com/Microsoft/vsts-vscode/issues)
+* Participate in [discussions](https://github.com/Microsoft/azure-repos-vscode/issues)
 
 ## Set up Node, npm and gulp
 
@@ -72,20 +72,20 @@ gulp package
 The VSIX package will be created in the root of the repository.
 
 ## Code Structure
-The code is structured between the Visual Studio Code extension file, the Team Services extension object, and the clients, contexts, helpers and services.
+The code is structured between the Visual Studio Code extension file, the Azure Repos extension object, and the clients, contexts, helpers and services.
 
 ### Visual Studio Code Extension file
-This is the file with the code called by Visual Studio Code to bootstrap the extension.  **extension.ts** should be thin and delegate to the Team Services Extension object.
+This is the file with the code called by Visual Studio Code to bootstrap the extension.  **extension.ts** should be thin and delegate to the Azure Repos Extension object.
 
-### Team Services Extension object
-This is the object intended to have small methods that call to the feature-specific clients that manipulate the UI and make calls to Team Services via the service objects.  When adding new commands, the functions that are called should be defined here.
+### Azure Repos Extension object
+This is the object intended to have small methods that call to the feature-specific clients that manipulate the UI and make calls to Azure DevOps via the service objects.  When adding new commands, the functions that are called should be defined here.
 
 ### Clients
 These are the clients used to talk to the services (see Services below).  The clients can manipulate the UI but should be the only objects calling the feature-specific services.
 
 ### Contexts
 * Git - This context is meant to contain the client-side Git configuration information
-* Server - This context is meant to contain the server-side information needed when making calls to Team Services
+* Server - This context is meant to contain the server-side information needed when making calls to Azure DevOps
 
 ### Helpers
 These are classes used to define constants, a logger, settings (configuration), strings and various utility functions.
@@ -94,7 +94,7 @@ These are classes used to define constants, a logger, settings (configuration), 
 These are classes used to hold data about particular objects (credentials, repository and user).
 
 ### Services
-All of the communication to Team Services should be done via services found in this folder.  These services should not know anything about the client-side types used to manipulate the Visual Studio Code UI.  The Q Promise APIs found in the vso-node-api package is the model used in this extension.
+All of the communication to Azure DevOps should be done via services found in this folder.  These services should not know anything about the client-side types used to manipulate the Visual Studio Code UI.  The Q Promise APIs found in the vso-node-api package is the model used in this extension.
 
 ## Debugging
 To debug the extension, make sure you've installed all of the npm packages as instructed earlier.  Then, open the root of the repository in Visual Studio Code and press F5.  If you have the extension already installed, you'll need to uninstall it via the Command Palette and try again.

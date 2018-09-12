@@ -1,7 +1,7 @@
 {
   "name": "team",
-  "displayName": "Visual Studio Team Services",
-  "description": "Connect to Team Services including Team Foundation Version Control (TFVC). Monitor your builds and manage your pull requests and work items for your TFVC or Git source repositories.",
+  "displayName": "Azure Repos",
+  "description": "Connect to Azure Repos and work with Git and Team Foundation Version Control (TFVC) repositories. Manage your pull requests, work items, and more.",
   "version": "1.136.0",
   "publisher": "ms-vsts",
   "icon": "assets/team.png",
@@ -15,7 +15,8 @@
     "Team Foundation Server",
     "Team Services",
     "Visual Studio Team Services",
-    "TFVC"
+    "TFVC",
+    "Azure Repos"
   ],
   "categories": [
     "SCM Providers",
@@ -23,11 +24,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/vsts-vscode.git"
+    "url": "https://github.com/Microsoft/azure-repos-vscode.git"
   },
-  "bugs": "https://github.com/Microsoft/vsts-vscode/issues",
+  "bugs": "https://github.com/Microsoft/azure-repos-vscode/issues",
   "license": "SEE LICENSE IN LICENSE.txt",
-  "homepage": "https://github.com/Microsoft/vsts-vscode/blob/master/README.md",
+  "homepage": "https://github.com/Microsoft/azure-repos-vscode/blob/master/README.md",
   "engines": {
     "vscode": "^1.12.0"
   },
@@ -228,12 +229,12 @@
     },
     "configuration": {
       "type": "object",
-      "title": "Team Services extension options",
+      "title": "Azure Repos extension options",
       "properties": {
         "team.appInsights.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Enables Application Insights telemetry collection for the Team Services extension."
+          "description": "Enables Application Insights telemetry collection for the Azure Repos extension."
         },
         "team.logging.level": {
           "type": "string",
