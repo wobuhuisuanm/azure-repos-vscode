@@ -1,4 +1,18 @@
-# Change Log
+
+
+## [v1.142.0](https://github.com/Microsoft/azure-repos-vscode/tree/v1.142.0) (2018-10-04)
+[Full Changelog](https://github.com/Microsoft/azure-repos-vscode/compare/v1.136.0...v1.142.0)
+
+**Closed issues:**
+
+- "Associate Work Items" not getting reflected in VSTS UI [\#430](https://github.com/Microsoft/azure-repos-vscode/issues/430)
+- TFVC only shows changes for one folder [\#426](https://github.com/Microsoft/azure-repos-vscode/issues/426)
+- New files/folders add to the project are not reflected as pending changes [\#422](https://github.com/Microsoft/azure-repos-vscode/issues/422)
+- Cannot link VS Code in OSX to VSTS [\#421](https://github.com/Microsoft/azure-repos-vscode/issues/421)
+
+**Merged pull requests:**
+
+- Update references to Azure Repos/DevOps [\#429](https://github.com/Microsoft/azure-repos-vscode/pull/429) ([kaylangan](https://github.com/kaylangan))
 
 ## [v1.136.0](https://github.com/Microsoft/azure-repos-vscode/tree/v1.136.0) (2018-05-23)
 [Full Changelog](https://github.com/Microsoft/azure-repos-vscode/compare/v1.133.0...v1.136.0)
@@ -54,7 +68,7 @@
 
 - Remove all telemetry data that could potential conflict with GDPR requirements. [\#377](https://github.com/Microsoft/azure-repos-vscode/pull/377) ([ermeckle](https://github.com/ermeckle))
 - Fixed "Associate work items" command for git source control \(\#314\) [\#367](https://github.com/Microsoft/azure-repos-vscode/pull/367) ([dougrday](https://github.com/dougrday))
-- Fix VSTS URL detection for "new-style" SSH clones [\#334](https://github.com/Microsoft/azure-repos-vscode/pull/334) ([aberghage](https://github.com/aberghage))
+- Fix VSTS URL detection for "new-style" SSH clones [\#334](https://github.com/Microsoft/azure-repos-vscode/pull/334) ([bearcage](https://github.com/bearcage))
 - Visual Studio TF.exe file location [\#321](https://github.com/Microsoft/azure-repos-vscode/pull/321) ([OzBob](https://github.com/OzBob))
 
 ## [v1.122.0](https://github.com/Microsoft/azure-repos-vscode/tree/v1.122.0) (2017-08-14)
