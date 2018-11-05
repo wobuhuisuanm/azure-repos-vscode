@@ -1,5 +1,18 @@
 
 
+## [v1.144.1](https://github.com/Microsoft/azure-repos-vscode/tree/v1.144.1) (2018-11-05)
+[Full Changelog](https://github.com/Microsoft/azure-repos-vscode/compare/v1.142.0...v1.144.1)
+
+**Closed issues:**
+
+- "Azure Repos" extension not found in search [\#440](https://github.com/Microsoft/azure-repos-vscode/issues/440)
+- VSTS is now Azure Repos : Finishing touches [\#437](https://github.com/Microsoft/azure-repos-vscode/issues/437)
+- August 20 update error [\#424](https://github.com/Microsoft/azure-repos-vscode/issues/424)
+
+**Merged pull requests:**
+
+- Set a minimum 10 minute polling interval [\#450](https://github.com/Microsoft/azure-repos-vscode/pull/450) ([jrbriggs](https://github.com/jrbriggs))
+
 ## [v1.142.0](https://github.com/Microsoft/azure-repos-vscode/tree/v1.142.0) (2018-10-04)
 [Full Changelog](https://github.com/Microsoft/azure-repos-vscode/compare/v1.136.0...v1.142.0)
 
