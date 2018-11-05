@@ -98,12 +98,12 @@ export class Settings extends BaseSettings implements ISettings {
         this._loggingLevel = this.readSetting<string>(loggingLevel, undefined);
 
         const pollingInterval = SettingNames.PollingInterval;
-        this._pollingInterval = this.readSetting<number>(pollingInterval, 5);
+        this._pollingInterval = this.readSetting<number>(pollingInterval, 10);
         Logger.LogDebug("Polling interval value (minutes): " + this._pollingInterval.toString());
         // Ensure a minimum value when an invalid value is set
-        if (this._pollingInterval <= 0) {
-            Logger.LogDebug("Negative polling interval provided.  Setting to default.");
-            this._pollingInterval = 5;
+        if (this._pollingInterval < 10) {
+            Logger.LogDebug("Polling interval must be greater than 10 minutes.");
+            this._pollingInterval = 10;
         }
 
         this._appInsightsEnabled = this.readSetting<boolean>(SettingNames.AppInsightsEnabled, true);
