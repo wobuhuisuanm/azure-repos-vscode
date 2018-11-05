@@ -174,10 +174,10 @@ If you don’t wish to send usage data to Microsoft, add the following entry to 
 ```
 
 ## Polling interval
-The polling interval for the pull request and build status bar indicators defaults to five minutes. You can change this
-value in the Visual Studio Code Settings by adding an entry like the one below. The minimum value is 1.
+The polling interval for the pull request and build status bar indicators defaults to ten minutes. You can change this
+value in the Visual Studio Code Settings by adding an entry like the one below. The minimum value is 10.
 ```javascript
-"team.pollingInterval": 2
+"team.pollingInterval": 12
 ```
 
 ## Logging
