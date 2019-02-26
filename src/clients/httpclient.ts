@@ -53,7 +53,6 @@ export class HttpClient {
             proxyUrl = url.parse(process.env.HTTP_PROXY);
         }
 
-        process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
         var options: any = {
             host: parsedUrl.hostname,
             port: parsedUrl.port || defaultPort,
