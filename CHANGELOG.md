@@ -1,5 +1,27 @@
 
 
+## [v1.149.2](https://github.com/Microsoft/azure-repos-vscode/tree/v1.149.2) (2019-02-26)
+[Full Changelog](https://github.com/Microsoft/azure-repos-vscode/compare/v1.144.1...v1.149.2)
+
+**Closed issues:**
+
+- Extension causes high cpu load [\#484](https://github.com/Microsoft/azure-repos-vscode/issues/484)
+- Extension causes high cpu load [\#482](https://github.com/Microsoft/azure-repos-vscode/issues/482)
+- Extension causes high cpu load [\#481](https://github.com/Microsoft/azure-repos-vscode/issues/481)
+- Extension causes high cpu load [\#480](https://github.com/Microsoft/azure-repos-vscode/issues/480)
+- Extension causes high cpu load [\#478](https://github.com/Microsoft/azure-repos-vscode/issues/478)
+- Extension causes high cpu load [\#475](https://github.com/Microsoft/azure-repos-vscode/issues/475)
+- Extension causes high cpu load [\#474](https://github.com/Microsoft/azure-repos-vscode/issues/474)
+- Extension causes high cpu load [\#470](https://github.com/Microsoft/azure-repos-vscode/issues/470)
+- Replace the user of the 'open' and 'opener' modules with vscode.open command [\#464](https://github.com/Microsoft/azure-repos-vscode/issues/464)
+- Extension causes high cpu load [\#462](https://github.com/Microsoft/azure-repos-vscode/issues/462)
+- Feature Request: Start pipelines from VS Code [\#453](https://github.com/Microsoft/azure-repos-vscode/issues/453)
+- Unable to configure Azure DevOps PAT [\#452](https://github.com/Microsoft/azure-repos-vscode/issues/452)
+
+**Merged pull requests:**
+
+- Don't bypass TLS verification [\#490](https://github.com/Microsoft/azure-repos-vscode/pull/490) ([jrbriggs](https://github.com/jrbriggs))
+
 ## [v1.144.1](https://github.com/Microsoft/azure-repos-vscode/tree/v1.144.1) (2018-11-05)
 [Full Changelog](https://github.com/Microsoft/azure-repos-vscode/compare/v1.142.0...v1.144.1)
 
