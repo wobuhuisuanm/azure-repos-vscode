@@ -6,6 +6,7 @@
 
 import { BuildResult } from "vso-node-api/interfaces/BuildInterfaces";
 import { Strings } from "./strings";
+import * as vscode from "vscode";
 
 import * as fs from "fs";
 import * as path from "path";
@@ -153,6 +154,13 @@ export class Utils {
 
     //Use open for Windows and Mac, opener for Linux
     public static OpenUrl(url: string) : void {
+        // Use the built in VS Code openExternal function if present.
+        if ((<any>vscode.env).openExternal) {
+            (<any>vscode.env).openExternal(vscode.Uri.parse(url));
+            return;
+        }
+
+        // Fallback to other node modules for old versions of VS Code
         switch (process.platform) {
             case "win32":
             case "darwin":
