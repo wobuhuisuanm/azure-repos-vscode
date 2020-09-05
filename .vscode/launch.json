@@ -3,6 +3,10 @@
 {
 	"version": "0.1.0",
 	"configurations": [
+		
+		F1installExtensions: Install ExtensionsSearch Extensions in MarketplaceteamAzure ReposInstall
+
+
 		{
 			"name": "Launch Extension",
 			"type": "extensionHost",
